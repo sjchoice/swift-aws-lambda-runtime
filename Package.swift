@@ -1,4 +1,4 @@
-// swift-tools-version:5.2
+// swift-tools-version:5.1
 
 import PackageDescription
 
@@ -49,6 +49,8 @@ let package = Package(
         .testTarget(name: "AWSLambdaTestingTests", dependencies: ["AWSLambdaTesting"]),
         // for perf testing
         .target(name: "MockServer", dependencies: [
+            .byName(name: "AWSLambdaRuntimeCore"),
+            .byName(name: "AWSLambdaRuntime"),
             .product(name: "NIOHTTP1", package: "swift-nio"),
         ]),
         .target(name: "StringSample", dependencies: ["AWSLambdaRuntime"]),
